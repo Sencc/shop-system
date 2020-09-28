@@ -1,0 +1,23 @@
+.login_wrap{height:363px;text-align:center;font-size:12px;color:#404040;}
+.login_main {height:383px;text-align:left;overflow:hidden;}
+.login_panel {position:relative;margin:0 auto;width:960px;height:383px;overflow:hidden;z-index:200;}
+.right_panel {position:absolute;width:451px;overflow:hidden;top:66px;right:48px;}
+.login_frame_border{border-left:1px solid #d1d1cf;border-right:1px solid #d1d1cf;width:445px;padding:0 2px;background:#f4f4f4;}
+.login_frame {width:445px;background:#fff;margin:0 auto;overflow:hidden;}
+.right_panel .login_title{color:#9c9c9c;text-align:right;padding:27px 41px 0 20px;width:384px;height:46px;}
+.right_panel .login_title i{float:left;margin-top:-6px;_display:inline;width:90px;height:18px;}
+.right_panel .clearfix{height:56px;}
+.right_panel label{float:left;width:92px;padding:7px 18px 0 0;text-align:right;}
+.right_panel .login_input{float:left;width:235px;height:24px;border:1px solid #d9d9d9;overflow:hidden;background:#fff;}
+.right_panel .clearfix input{border:1px solid #fff;width:227px;height:21px;padding:1px 0 0 6px;margin:0;*margin-top:-1px;line-height:21px;font-size:12px;color:#404040;}
+.right_panel .clearfix input.tip{border:1px solid #fff;}
+.right_panel .clearfix input.focus{border:1px solid #66ccff;}
+.right_panel .hint{display:block;clear:both;padding:6px 0 0 116px;color:#9c9c9c;width:329px;}
+.right_panel .error{display:block;clear:both;padding:5px 0 0 116px;color:#c30;}
+.right_panel .login_btn{padding:0 0 0 108px;height:63px;}
+.right_panel .login_btn input{width:94px;height:27px;float:left;border:none;font-size:0;line-height:81px;overflow:hidden;cursor:pointer;}
+.right_panel .login_btn input.btn_login_hover{background-position:-331px -46px}
+.right_panel .login_frist{position:relative;}
+
+.co_login{color:#878787;margin-top:-10px;padding:0 0 15px 55px;}
+.co_login a{display:inline-block;height:18px;line-height:18px;margin-right:10px;text-indent:19px;}

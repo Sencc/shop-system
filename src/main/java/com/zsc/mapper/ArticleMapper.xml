@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsc.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.zsc.domain.Article">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="article_name" jdbcType="VARCHAR" property="articleName" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="SUPPLIER" jdbcType="VARCHAR" property="supplier" />
+    <result column="PRICE" jdbcType="DOUBLE" property="price" />
+    <result column="LOCALITY" jdbcType="VARCHAR" property="locality" />
+    <result column="PUTAWAY_DATE" jdbcType="DATE" property="putawayDate" />
+    <result column="STORAGE" jdbcType="INTEGER" property="storage" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="TYPE_CODE" jdbcType="VARCHAR" property="typeCode" />
+    <result column="CREATE_DATE" jdbcType="DATE" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, article_name, TITLE, SUPPLIER, PRICE, LOCALITY, PUTAWAY_DATE, STORAGE, IMAGE, 
+    DESCRIPTION, TYPE_CODE, CREATE_DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.zsc.domain.ArticleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ec_article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ec_article
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ec_article
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zsc.domain.ArticleExample">
+    delete from ec_article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zsc.domain.Article">
+    insert into ec_article (ID, article_name, TITLE, 
+      SUPPLIER, PRICE, LOCALITY, 
+      PUTAWAY_DATE, STORAGE, IMAGE, 
+      DESCRIPTION, TYPE_CODE, CREATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{articleName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{supplier,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{locality,jdbcType=VARCHAR}, 
+      #{putawayDate,jdbcType=DATE}, #{storage,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zsc.domain.Article">
+    insert into ec_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="articleName != null">
+        article_name,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="supplier != null">
+        SUPPLIER,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="locality != null">
+        LOCALITY,
+      </if>
+      <if test="putawayDate != null">
+        PUTAWAY_DATE,
+      </if>
+      <if test="storage != null">
+        STORAGE,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="typeCode != null">
+        TYPE_CODE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="articleName != null">
+        #{articleName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="locality != null">
+        #{locality,jdbcType=VARCHAR},
+      </if>
+      <if test="putawayDate != null">
+        #{putawayDate,jdbcType=DATE},
+      </if>
+      <if test="storage != null">
+        #{storage,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zsc.domain.ArticleExample" resultType="java.lang.Long">
+    select count(*) from ec_article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ec_article
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleName != null">
+        article_name = #{record.articleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplier != null">
+        SUPPLIER = #{record.supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        PRICE = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.locality != null">
+        LOCALITY = #{record.locality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.putawayDate != null">
+        PUTAWAY_DATE = #{record.putawayDate,jdbcType=DATE},
+      </if>
+      <if test="record.storage != null">
+        STORAGE = #{record.storage,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null">
+        IMAGE = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeCode != null">
+        TYPE_CODE = #{record.typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ec_article
+    set ID = #{record.id,jdbcType=INTEGER},
+      article_name = #{record.articleName,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      SUPPLIER = #{record.supplier,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=DOUBLE},
+      LOCALITY = #{record.locality,jdbcType=VARCHAR},
+      PUTAWAY_DATE = #{record.putawayDate,jdbcType=DATE},
+      STORAGE = #{record.storage,jdbcType=INTEGER},
+      IMAGE = #{record.image,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      TYPE_CODE = #{record.typeCode,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zsc.domain.Article">
+    update ec_article
+    <set>
+      <if test="articleName != null">
+        article_name = #{articleName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        SUPPLIER = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="locality != null">
+        LOCALITY = #{locality,jdbcType=VARCHAR},
+      </if>
+      <if test="putawayDate != null">
+        PUTAWAY_DATE = #{putawayDate,jdbcType=DATE},
+      </if>
+      <if test="storage != null">
+        STORAGE = #{storage,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zsc.domain.Article">
+    update ec_article
+    set article_name = #{articleName,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      SUPPLIER = #{supplier,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DOUBLE},
+      LOCALITY = #{locality,jdbcType=VARCHAR},
+      PUTAWAY_DATE = #{putawayDate,jdbcType=DATE},
+      STORAGE = #{storage,jdbcType=INTEGER},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

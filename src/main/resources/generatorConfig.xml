@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/Myssm"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- targetProject:生成实体类的位置 -->
+        <javaModelGenerator targetPackage="com.zsc.domain"
+                            targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.zsc.mapper"
+                         targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.zsc.mapper"
+                             targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+<!--
+        <table tableName="product"></table>
+        &lt;!&ndash; <table tableName="orderdetail"></table> &ndash;&gt;
+
+        <table tableName="user"></table>-->
+
+
+        <!--
+
+         默认情况下，mybatis 逆向工程 生成的实体名称 和表名完全一样！
+
+
+        domainObjectName  告诉mybatis 在生成实体的时候 使用什么名称
+
+
+
+        -->
+
+        <table tableName="ec_article" domainObjectName="Article"></table>
+        <table tableName="ec_article_car" domainObjectName="ArticleCar"></table>
+        <table tableName="ec_article_type" domainObjectName="ArticleType"></table>
+        <table tableName="ec_order" domainObjectName="Order"></table>
+        <table tableName="ec_order_item" domainObjectName="OrderItem"></table>
+        <table tableName="ec_user" domainObjectName="User"></table>
+        <!-- <table schema="" tableName="sys_user"></table>
+        <table schema="" tableName="sys_role"></table>
+        <table schema="" tableName="sys_permission"></table>
+        <table schema="" tableName="sys_user_role"></table>
+        <table schema="" tableName="sys_role_permission"></table> -->
+
+        <!-- 有些表的字段需要指定java类型
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table> -->
+    </context>
+</generatorConfiguration>
