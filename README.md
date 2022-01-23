@@ -14,21 +14,21 @@
 
 ### 3.项目展示
 
-![](/docs/shop.png)
+![](./docs/shop.png)
 
 
 
-![](/docs/shop_in.png)
+![](./docs/shop_in.png)
 
 
 
-![](/docs/count.png)
+![](./docs/count.png)
 
-![](/docs/order.png)
+![](./docs/order.png)
 
 
 
-![](/docs/register.png)
+![](./docs/register.png)
 
 ### 4.运行
 
